@@ -12,6 +12,7 @@
           v-for="item in drawer.items"
           :to="item.route"
           :key="item.title"
+          @click="toggleDrawer"
         >
           <v-icon>{{item.icon}}</v-icon>
           <v-list-tile-content class="pl-2">{{item.title}}</v-list-tile-content>
