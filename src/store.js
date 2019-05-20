@@ -1,29 +1,23 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import actions from '@/config/actions'
+import mutations from '@/config/mutations'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    tasks: [
-      {
-        id: 1,
-        title: 'Get a job',
-        description: 'Search job',
-        completed: false
-      },
-      {
-        id: 2,
-        title: 'Take a walk',
-        description: 'Wake up early in the morning and go for a walk',
-        completed: true
-      }
-    ]
+    tasks: []
   },
   mutations: {
-
+    [mutations.ADD_TASK] (state, payload) {
+      state.tasks.push(payload.task)
+    }
   },
   actions: {
-
+    [actions.ADD_TASK] ({ commit }, task) {
+      commit(actions.ADD_TASK, { task })
+    }
   }
 })
