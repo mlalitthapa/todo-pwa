@@ -35,7 +35,23 @@
     </v-toolbar>
 
     <v-content>
+      <v-container>
+        <v-btn
+          color="pink"
+          dark
+          small
+          bottom
+          right
+          fab
+          absolute
+        >
+          <v-icon>add</v-icon>
+        </v-btn>
+        <router-view></router-view>
+      </v-container>
     </v-content>
+
+    <v-footer app></v-footer>
   </v-app>
 </template>
 
