@@ -44,6 +44,7 @@
           right
           fab
           absolute
+          @click="addNewTask"
         >
           <v-icon>add</v-icon>
         </v-btn>
@@ -98,6 +99,10 @@ export default {
       } else {
         this.drawer.open = !this.drawer.open
       }
+    },
+    addNewTask () {
+      if (this.drawer.open) this.toggleDrawer()
+      this.$router.push('new')
     }
   }
 }
