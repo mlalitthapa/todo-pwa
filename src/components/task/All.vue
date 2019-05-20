@@ -6,8 +6,8 @@
       sm6
       xs12
       class="ma-2"
-      v-for="task in tasks"
-      :key="task.id"
+      v-for="(task, index) in tasks"
+      :key="index"
     >
       <Task :task="task"/>
     </v-flex>
