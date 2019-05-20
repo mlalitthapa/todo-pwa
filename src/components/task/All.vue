@@ -9,32 +9,21 @@
       v-for="task in tasks"
       :key="task.id"
     >
-      <Task :task="task" />
+      <Task :task="task"/>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Task from '@/components/task/Task'
+
 export default {
   name: 'All',
   components: { Task },
-  data: () => ({
-    tasks: [
-      {
-        id: 1,
-        title: 'Get a job',
-        description: 'Search job',
-        completed: false
-      },
-      {
-        id: 2,
-        title: 'Take a walk',
-        description: 'Wake up early in the morning and go for a walk',
-        completed: true
-      }
-    ]
-  })
+  computed: {
+    ...mapState(['tasks'])
+  }
 }
 </script>
 
