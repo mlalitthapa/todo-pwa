@@ -7,6 +7,16 @@
       v-model="drawer.open"
       app
     >
+      <v-list>
+        <v-list-tile
+          v-for="item in drawer.items"
+          :to="item.route"
+          :key="item.title"
+        >
+          <v-icon>{{item.icon}}</v-icon>
+          <v-list-tile-content class="pl-2">{{item.title}}</v-list-tile-content>
+        </v-list-tile>
+      </v-list>
     </v-navigation-drawer>
 
     <v-toolbar
@@ -43,7 +53,24 @@ export default {
         clipped: false,
         fixed: false,
         open: false,
-        permanent: false
+        permanent: false,
+        items: [
+          {
+            icon: 'list',
+            title: 'All',
+            route: '/'
+          },
+          {
+            icon: 'done',
+            title: 'Done',
+            route: '/done'
+          },
+          {
+            icon: 'clear',
+            title: 'Pending',
+            route: '/pending'
+          }
+        ]
       },
       toolbar: {
         clippedLeft: false,
