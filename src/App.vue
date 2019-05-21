@@ -1,10 +1,8 @@
 <template>
   <v-app>
     <v-navigation-drawer
-      :clipped="drawer.clipped"
-      :fixed="drawer.fixed"
-      :permanent="drawer.permanent"
       v-model="drawer.open"
+      temporary
       app
     >
       <v-list>
@@ -12,7 +10,6 @@
           v-for="item in drawer.items"
           :to="item.route"
           :key="item.title"
-          @click="toggleDrawer"
         >
           <v-icon>{{item.icon}}</v-icon>
           <v-list-tile-content class="pl-2">{{item.title}}</v-list-tile-content>
@@ -92,13 +89,7 @@ export default {
   },
   methods: {
     toggleDrawer () {
-      this.drawer.permanent = !this.drawer.permanent
-      if (this.drawer.permanent) {
-        this.drawer.clipped = true
-        this.toolbar.clippedLeft = true
-      } else {
-        this.drawer.open = !this.drawer.open
-      }
+      this.drawer.open = !this.drawer.open
     },
     addNewTask () {
       if (this.drawer.open) this.toggleDrawer()
