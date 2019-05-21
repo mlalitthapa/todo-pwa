@@ -3,17 +3,24 @@ import Vuex from 'vuex'
 
 import actions from '@/config/actions'
 import mutations from '@/config/mutations'
-import { addTask } from '@/services/task_service'
+import { addTask, fetchTasks } from '@/services/task_service'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    tasks: []
+    tasks: [],
+    loading: false
   },
   mutations: {
     [mutations.ADD_TASK] (state, payload) {
       state.tasks.push(payload.task)
+    },
+    [mutations.TOGGLE_LOADER] (state, status) {
+      state.loading = status
+    },
+    [mutations.FETCH_TASKS] (state, payload) {
+      state.tasks = payload.tasks
     }
   },
   actions: {
@@ -21,7 +28,17 @@ export default new Vuex.Store({
       addTask(task)
     },
     [actions.TASK_ADDED] ({ commit }, task) {
-      commit(actions.ADD_TASK, { task })
+      commit(mutations.ADD_TASK, { task })
+    },
+    [actions.START_LOADER] ({ commit }) {
+      commit(mutations.TOGGLE_LOADER, true)
+    },
+    [actions.STOP_LOADER] ({ commit }) {
+      commit(mutations.TOGGLE_LOADER, false)
+    },
+    [actions.FETCH_TASKS] ({ dispatch }) {
+      dispatch(actions.START_LOADER)
+      fetchTasks()
     }
   }
 })
