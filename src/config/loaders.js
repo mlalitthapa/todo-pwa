@@ -1,0 +1,4 @@
+module.exports = {
+  ADDING_TASK: 'ADDING_TASK',
+  FETCHING_TASKS: 'FETCHING_TASKS'
+}
