@@ -20,11 +20,11 @@ const getDBReference = () => {
   return firebase.database()
 }
 
-export const pushToRef = (task) => {
+export const pushToRef = (path, data) => {
   const db = getDBReference()
-  db.ref('tasks').push(task)
+  db.ref('tasks').push(data)
     .then(() => {
-      store.dispatch(TASK_ADDED, task)
+      store.dispatch(TASK_ADDED, data)
     })
     .catch(console.log)
 }
