@@ -1,7 +1,7 @@
 <template>
   <v-card
     color="cyan"
-    class="white--text"
+    class="white--text ma-2"
   >
     <v-card-title primary-title>
       <div>

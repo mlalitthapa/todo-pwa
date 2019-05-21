@@ -1,11 +1,16 @@
 <template>
-  <v-layout row>
+  <v-layout row wrap justify-center>
+    <v-flex xs2 v-show="loading">
+      <v-progress-circular
+        indeterminate
+        color="primary"
+      ></v-progress-circular>
+    </v-flex>
     <v-flex
       lg3
       md4
       sm6
       xs12
-      class="ma-2"
       v-for="(task, index) in tasks"
       :key="index"
     >
@@ -15,14 +20,23 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import Task from '@/components/task/Task'
+import { FETCH_TASKS } from '@/config/actions'
 
 export default {
   name: 'All',
   components: { Task },
+  created () {
+    this[FETCH_TASKS]()
+  },
   computed: {
-    ...mapState(['tasks'])
+    ...mapState(['tasks', 'loading'])
+  },
+  methods: {
+    ...mapActions([
+      FETCH_TASKS
+    ])
   }
 }
 </script>
