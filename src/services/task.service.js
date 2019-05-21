@@ -1,4 +1,4 @@
-import { pushToRef, fetchRef } from './firebase_service'
+import { pushToRef, fetchRef } from './firebase.service'
 
 const DB_REF_PATH = 'tasks'
 

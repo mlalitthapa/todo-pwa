@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 import actions from '@/config/actions'
 import mutations from '@/config/mutations'
-import { addTask, fetchTasks } from '@/services/task_service'
+import { addTask, fetchTasks } from '@/services/task.service'
 
 Vue.use(Vuex)
 
