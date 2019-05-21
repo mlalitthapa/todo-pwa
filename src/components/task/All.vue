@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap justify-center>
-    <v-flex xs2 v-show="loading">
+    <v-flex xs2 v-show="isLoading">
       <v-progress-circular
         indeterminate
         color="primary"
@@ -13,7 +13,7 @@
       xs12
       v-for="(task, index) in tasks"
       :key="index"
-      v-show="!loading"
+      v-show="!isLoading"
     >
       <Task :task="task"/>
     </v-flex>
@@ -28,6 +28,7 @@ import { createNamespacedHelpers } from 'vuex'
 import Task from '@/components/task/Task'
 import { FETCH_TASKS } from '@/config/actions'
 import { TASK } from '@/config/modules'
+import { FETCHING_TASKS } from '@/config/loaders'
 
 const { mapState, mapActions } = createNamespacedHelpers(TASK)
 
@@ -38,7 +39,13 @@ export default {
     this[FETCH_TASKS]()
   },
   computed: {
-    ...mapState(['tasks', 'loading'])
+    ...mapState([
+      'tasks',
+      'loading'
+    ]),
+    isLoading () {
+      return this.loading === FETCHING_TASKS
+    }
   },
   methods: {
     ...mapActions([

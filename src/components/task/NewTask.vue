@@ -30,9 +30,15 @@
         <v-btn
           color="primary"
           :disabled="!valid"
+          v-show="!isLoading"
           @click="addTask"
         >Add
         </v-btn>
+        <v-progress-circular
+          indeterminate
+          color="primary"
+          v-show="isLoading"
+        ></v-progress-circular>
       </v-form>
     </v-flex>
   </v-layout>
@@ -42,8 +48,9 @@
 import { createNamespacedHelpers } from 'vuex'
 import { ADD_TASK } from '@/config/actions'
 import { TASK } from '@/config/modules'
+import { ADDING_TASK } from '@/config/loaders'
 
-const { mapActions } = createNamespacedHelpers(TASK)
+const { mapActions, mapState } = createNamespacedHelpers(TASK)
 
 export default {
   name: 'NewTask',
@@ -58,6 +65,14 @@ export default {
       v => !!v || !!v.trim() || 'Description is required'
     ]
   }),
+  computed: {
+    ...mapState([
+      'loading'
+    ]),
+    isLoading () {
+      return this.loading === ADDING_TASK
+    }
+  },
   methods: {
     ...mapActions([
       ADD_TASK
