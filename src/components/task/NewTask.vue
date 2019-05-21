@@ -39,8 +39,11 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { createNamespacedHelpers } from 'vuex'
 import { ADD_TASK } from '@/config/actions'
+import { TASK } from '@/config/modules'
+
+const { mapActions } = createNamespacedHelpers(TASK)
 
 export default {
   name: 'NewTask',

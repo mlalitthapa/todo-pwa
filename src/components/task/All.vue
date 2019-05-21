@@ -13,16 +13,23 @@
       xs12
       v-for="(task, index) in tasks"
       :key="index"
+      v-show="!loading"
     >
       <Task :task="task"/>
+    </v-flex>
+    <v-flex v-show="!tasks" class="text-xs-center">
+      No tasks added yet
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { createNamespacedHelpers } from 'vuex'
 import Task from '@/components/task/Task'
 import { FETCH_TASKS } from '@/config/actions'
+import { TASK } from '@/config/modules'
+
+const { mapState, mapActions } = createNamespacedHelpers(TASK)
 
 export default {
   name: 'All',
